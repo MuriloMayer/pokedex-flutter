@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/pokemon.dart';
 import '../models/pokemon_detail.dart';
 
 class PokemonService {
-  static const String baseUrl = 'https://pokeapi.co/api/v2';
+  static String get baseUrl => dotenv.env['POKEMON_API_BASE_URL'] ?? 'https://pokeapi.co/api/v2';
 
   static Future<List<Pokemon>> getPokemonList({int offset = 0, int limit = 20}) async {
     try {

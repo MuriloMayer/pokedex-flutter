@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'providers/favorites_provider.dart';
 import 'screens/home_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => FavoritesProvider(),
       child: MaterialApp(
-        title: 'Pokédex Explorer',
+        title: 'Pokédex',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.red,
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
             elevation: 0,
             centerTitle: true,
           ),
-          cardTheme: CardTheme(
+          cardTheme: CardThemeData(
             elevation: 4,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),

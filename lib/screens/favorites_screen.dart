@@ -27,7 +27,7 @@ class FavoritesScreen extends StatelessWidget {
           final favorites = favoritesProvider.favorites;
 
           if (favorites.isEmpty) {
-            return _buildEmptyState();
+            return _buildEmptyState(context);
           }
 
           return Column(
@@ -143,7 +143,7 @@ class FavoritesScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildEmptyState() {
+  Widget _buildEmptyState(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -195,7 +195,7 @@ class FavoritesScreen extends StatelessWidget {
           // Botão para voltar
           ElevatedButton.icon(
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.pop(context);
             },
             icon: const Icon(Icons.explore),
             label: const Text('Explorar Pokédex'),
